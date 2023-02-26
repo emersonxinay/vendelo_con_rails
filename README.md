@@ -507,6 +507,131 @@ a esto:
 <%= render partial: 'product', collection: @products %>
 ```
 
+# configuraciòn de idioma para la aplicacón config/application.rb
+de esto: 
+```ruby 
+# config/application.rb
+require_relative "boot"
+
+require "rails/all"
+
+# Require the gems listed in Gemfile, including any gems
+# you've limited to :test, :development, or :production.
+Bundler.require(*Rails.groups)
+
+module Vende
+  class Application < Rails::Application
+    # Initialize configuration defaults for originally generated Rails version.
+    config.load_defaults 7.0
+
+    # Configuration for the application, engines, and railties goes here.
+    #
+    # These settings can be overridden in specific environments using the files
+    # in config/environments, which are processed later.
+    #
+    # config.time_zone = "Central Time (US & Canada)"
+    # config.eager_load_paths << Rails.root.join("extras")
+  end
+end
+```
+a esto: 
+```ruby 
+require_relative "boot"
+
+require "rails/all"
+
+# Require the gems listed in Gemfile, including any gems
+# you've limited to :test, :development, or :production.
+Bundler.require(*Rails.groups)
+
+module Vende
+  class Application < Rails::Application
+    # Initialize configuration defaults for originally generated Rails version.
+    config.load_defaults 7.0
+
+    # Configuration for the application, engines, and railties goes here.
+    #
+    # These settings can be overridden in specific environments using the files
+    # in config/environments, which are processed later.
+    #
+    # config.time_zone = "Central Time (US & Canada)"
+    # config.eager_load_paths << Rails.root.join("extras")
+    config.i18n.available_locales = [:en, :es]
+    config.i18n.default_locale = :es
+  end
+end
+```
+y en la carpeta config/locales creamos un nuevo archivo para el idioma españo es.yml y por dentro agregamos lo siguiente:
+en el html:
+```erb
+  <h1><%= t('.title') %></h1>
+
+```
+
+en el archivo config/locales/es.yml: 
+```yml
+es:
+  products:
+    new:
+      title: 'Agregar Nuevo Producto'
+    edit:
+      title: 'Editar Producto'
+```
+
+## en caso de los turbos 
+en el html:
+```html
+<%= link_to "eliminar", product_path(@product), data: {turbo_method: :delete, turbo_confirm: t('common.confirm')}%>
+
+```
+y en el archivo config/locales/es.yml deberia quedar así agregando
+```yml
+es:
+  common:
+    confirm: '¿Esta seguro de eliminar?'
+  products:
+    new:
+      title: 'Agregar Nuevo Producto'
+    edit:
+      title: 'Editar Producto'
+```
+
+# traduciendo desde los controladores 
+de esto: 
+```ruby
+def create
+    if product.save
+      redirect_to products_path, notice: 'tu producto se a creado correctamente'
+    else 
+      render :new,  status: :unprocessable_entity   
+    end
+    
+  end
+```
+
+a esto: 
+```ruby
+def create
+    if product.save
+      redirect_to products_path, notice: t('.created')
+    else 
+      render :new,  status: :unprocessable_entity   
+    end
+    
+  end
+```
+
+# Usando scaffold para hacer con una linea de comando casi todo lo que se hizo anteriormente
+```bash
+rails g scaffold Category name:string
+```
+luego hacer la migración
+```bash
+rails db:migrate
+```
+
+
+
 
 
 

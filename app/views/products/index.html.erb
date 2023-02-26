@@ -1,4 +1,4 @@
 <!-- la extención .erb se usa para que se utilize también codigo ruby dentro del html -->
-<h1>Productos: <%= Date.today%> </h1>
+<h1><%= t('.title') %></h1>
 
 <%= render partial: 'product', collection: @products %>
