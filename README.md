@@ -324,6 +324,191 @@ rails active_storage:install
 rails db:migrate
 ```
 
+# refactorizando codigo
+de esto 
+```ruby 
+
+# apps/config/routes.rb
+# ruta inicio por defecto 
+  
+  root "products#index"
+  delete 'products/:id', to: 'products#destroy'
+  patch 'products/:id', to: 'products#update'
+  post 'products', to: 'products#create'
+  get 'products/new', to: 'products#new', as: :new_product
+  # ruta para ver todos los productos
+  get '/products', to: 'products#index'
+  # ruta para ir al id de cada producto
+  get '/products/:id', to: 'products#show', as: :product 
+  get '/products/:id/edit', to: 'products#edit', as: :edit_product 
+```
+a esto: 
+```ruby
+  # el path: '/' es como agregar el root "products#index"
+  resources :products, path: '/'
+```
+
+## refactorizando el controller 
+de esto:
+```ruby
+class ProductsController < ApplicationController
+  def index
+    # para mostrar todo los productos
+    @products = Product.all
+  end
+  
+  def show
+    # para buscar por id
+    @product = Product.find(params[:id])
+    # esto es lo mismo a hacer desde sql esto
+    # SELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2  [["id", 3], ["LIMIT", 1]]
+  end
+
+  def new
+    @product = Product.new
+  end
+
+  def create
+    @product = Product.new(product_params)
+    if @product.save
+      redirect_to products_path, notice: 'tu producto se a creado correctamente'
+    else 
+      render :new,  status: :unprocessable_entity   
+    end
+    
+  end
+
+  def edit
+    @product = Product.find(params[:id])
+  end
+
+  def update
+    @product = Product.find(params[:id])
+    if @product.update(product_params)
+      redirect_to products_path, notice: "Producto actualizado correctamente" 
+    else
+      render :edit, status: :unprocessable_entity
+    end
+    
+  end
+
+  def destroy
+    @product = Product.find(params[:id])
+    @product.destroy
+    redirect_to products_path, notice: "se elimino correctamente el producto", status: :see_other
+  end
+  
+  
+
+  private 
+  def product_params
+    params.require(:product).permit(:title, :description, :price, :photo)
+    
+  end
+end
+```
+
+a esto: 
+```ruby
+class ProductsController < ApplicationController
+  def index
+    # para mostrar todo los productos
+    @products = Product.all
+  end
+  
+  def show
+    product
+  end
+
+  def new
+    @product = Product.new
+  end
+
+  def create
+    if product.save
+      redirect_to products_path, notice: 'tu producto se a creado correctamente'
+    else 
+      render :new,  status: :unprocessable_entity   
+    end
+    
+  end
+
+  def edit
+    product
+  end
+
+  def update
+    if product.update(product_params)
+      redirect_to products_path, notice: "Producto actualizado correctamente" 
+    else
+      render :edit, status: :unprocessable_entity
+    end
+    
+  end
+
+  def destroy
+    product.destroy
+    redirect_to products_path, notice: "se elimino correctamente el producto", status: :see_other
+  end
+  
+  def product
+    @product = Product.find(params[:id])
+
+  end
+  
+  
+
+  private 
+  def product_params
+    params.require(:product).permit(:title, :description, :price, :photo)
+    
+  end
+end
+```
+
+# no hacer consultas repetidas con respecto a imagenes 
+modificamos nuestro controller de esto que hace mas de dos consultas: 
+```ruby
+def index
+    # para mostrar todo los productos
+    @products = Product.all
+end
+```
+a esto que lo reduce: 
+```ruby
+def index
+    # para mostrar todo los productos
+    @products = Product.all.with_attached_photo
+end
+```
+
+# refactorizar archivos html
+de esto: 
+```html
+<!-- la extención .erb se usa para que se utilize también codigo ruby dentro del html -->
+<h1>Productos: <%= Date.today%> </h1>
+
+  <% @products.each do |product| %>
+
+  <%= link_to product_path(product.id), class: "product" do %>
+  <%= image_tag product.photo, width: 100 if product.photo.attached? %>
+  <h2 > <%= product.title%> </h2>
+  <h2 > <%= product.description%> </h2>
+  <p > <%= product.price%> </p>
+  <%end%>
+
+<%end%>
+```
+a esto:
+```html 
+<!-- la extención .erb se usa para que se utilize también codigo ruby dentro del html -->
+<h1>Productos: <%= Date.today%> </h1>
+
+<%= render partial: 'product', collection: @products %>
+```
+
+
+
 
 
 

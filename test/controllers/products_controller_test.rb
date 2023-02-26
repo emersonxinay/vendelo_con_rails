@@ -20,7 +20,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'allow to create a new product' do
-    post products_path, params: {
+    post product_path, params: {
       product:{
         title: 'cargador',
         description: 'carga rapida',
@@ -32,7 +32,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'does not allow to create a new product with emty fields' do
-    post products_path, params: {
+    post product_path, params: {
       product:{
         title: '',
         description: 'carga rapida',

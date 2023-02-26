@@ -1,13 +1,4 @@
 <!-- la extención .erb se usa para que se utilize también codigo ruby dentro del html -->
 <h1>Productos: <%= Date.today%> </h1>
 
-  <% @products.each do |product| %>
-
-  <%= link_to product_path(product.id), class: "product" do %>
-  <%= image_tag product.photo, width: 100 if product.photo.attached? %>
-  <h2 > <%= product.title%> </h2>
-  <h2 > <%= product.description%> </h2>
-  <p > <%= product.price%> </p>
-  <%end%>
-
-<%end%>
+<%= render partial: 'product', collection: @products %>
