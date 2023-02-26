@@ -21,6 +21,7 @@ es:
 
   common:
     confirm: '¿Esta seguro de eliminar?'
+    back: 'atras'
   products:
     new:
       title: 'Agregar Nuevo Producto'
@@ -35,3 +36,20 @@ es:
   partials:
     navbar:
       add: 'Agregar Nuevo Producto'
+  categories:
+    category:
+      edit: 'Editar'
+      delete: 'Borrar'
+    index:
+      title: 'Categorías'
+      new: 'Añadir categoría'
+    edit:
+      title: 'Editar categoría'
+    create:
+      created: 'Tu categoría se ha creado correctamente'
+    update:
+      updated: 'Tu categoría se ha actualizado correctamente'
+    destroy:
+      destroyed: 'Tu categoría se ha eliminado correctamente'
+    new:
+      title: 'Añadir categoría'
