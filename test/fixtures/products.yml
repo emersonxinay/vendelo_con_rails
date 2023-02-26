@@ -1,0 +1,11 @@
+# Aqui se pone todos los datos que quieres que se pruebe
+
+tablet:
+  title: tablets
+  description: las mejores tablets
+  price: 100
+
+laptop:
+  title: laptops
+  description: Descripcion:Laptops de ultimo modelo
+  price: 200
