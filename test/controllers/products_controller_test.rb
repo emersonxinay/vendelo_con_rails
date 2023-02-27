@@ -101,4 +101,11 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to products_path
     assert_equal flash[:notice], 'Tu producto se ha eliminado correctamente'
   end
+  test 'search a product by query_text' do
+    get products_path(query_text: 'Switch')
+
+    assert_response :success
+    assert_select '.product', 1
+    assert_select 'h2', 'Nintendo Switch'
+  end
 end

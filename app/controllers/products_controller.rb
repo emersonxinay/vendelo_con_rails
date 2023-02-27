@@ -5,12 +5,16 @@ class ProductsController < ApplicationController
     if params[:category_id]
       @products = @products.where(category_id: params[:category_id])
     end
-    # para filtrar 
+    # para filtrar precio
     if params[:min_price].present?
       @products = @products.where("price >= ?", params[:min_price])
     end
     if params[:max_price].present?
       @products = @products.where("price <= ?", params[:max_price])
+    end
+    # para filtrar por texto
+    if params[:query_text].present?
+      @products = @products.search_full_text(params[:query_text])
     end
   end
 

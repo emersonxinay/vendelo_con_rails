@@ -723,6 +723,30 @@ y desde application.rb agregar
     config.active_record.async_query_executor = :global_thread_pool
 ```
 
+# agregando gema para hacer consulta de producto
+link de documentación: https://github.com/Casecommons/pg_search
+
+```bash 
+bundle  add pg_search
+```
+o desde el mismo documento Gemfile
+```Gemfile
+gem pg_search
+```
+y agregamos lo siguiente al model
+```ruby
+# apps/model/product.rb
+include PgSearch::Model
+  pg_search_scope :search_full_text, against: {
+    title: 'A',
+    description: 'B'
+  }
+```
+
+
+
+
+
 
 
 
