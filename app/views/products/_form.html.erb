@@ -1,25 +1,34 @@
 <%= form_with model: @product do |form| %>
-  <% @product.errors.full_messages.each do |error|%>
-    <%= error%>
-  <%end%>
-  <div class="form-group">
+  <% @product.errors.full_messages.each do |error| %>
+    <div>
+      <%= error %>
+    </div>
+  <% end %>
+
+  <div>
     <%= form.label :title %>
-    <%= form.text_field :title, class: "form-control" %>
+    <%= form.text_field :title %>
   </div>
 
-  <div class="form-group">
+  <div>
     <%= form.label :description %>
-    <%= form.text_area :description, class: "form-control" %>
+    <%= form.text_area :description %>
   </div>
 
-  <div class="form-group">
+  <div>
     <%= form.label :price %>
-    <%= form.number_field :price, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= form.label :photo %>
-    <%= form.file_field :photo, class: "form-control" %>
+    <%= form.number_field :price %>
   </div>
 
-  <%= form.submit "Enviar", class: "btn btn-primary" %>
+  <div>
+    <%= form.label :category_id %>
+    <%= form.collection_select :category_id, Category.all.order(name: :asc), :id, :name %>
+  </div>
+
+  <div>
+    <%= form.label :photo %>
+    <%= form.file_field :photo %>
+  </div>
+
+  <%= form.submit %>
 <% end %>

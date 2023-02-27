@@ -27,12 +27,15 @@ es:
       title: 'Agregar Nuevo Producto'
     edit:
       title: 'Editar Producto'
+    create:
+      created: 'Tu producto se ha creado correctamente'
     index:
       title: 'Productos:'
+      all: 'Todos'
     update:
-      updated: 'Se actualizo los datos correctamente'
+      updated: 'Tu producto se ha actualizado correctamente'
     destroy:
-      destroyed: 'Se elimino el producto'
+      destroyed: 'Tu producto se ha eliminado correctamente'
   partials:
     navbar:
       add: 'Agregar Nuevo Producto'

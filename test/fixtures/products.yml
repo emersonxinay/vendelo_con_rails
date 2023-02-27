@@ -1,11 +1,19 @@
 # Aqui se pone todos los datos que quieres que se pruebe
 
-tablet:
-  title: tablets
-  description: las mejores tablets
-  price: 100
+ps4:
+  title: ps4 Fast
+  description: Ps4 en buen estado
+  price: 150
+  category: videogames
 
-laptop:
-  title: laptops
-  description: Descripcion:Laptops de ultimo modelo
-  price: 200
+switch:
+  title: Nintendo Switch
+  description: le falta el lector de tarjeta sd
+  price: 195
+  category: videogames
+
+air:
+  title: Macbook Air
+  description: Le falla la batería
+  price: 250
+  category: computers

@@ -1,4 +1,8 @@
 <!-- la extención .erb se usa para que se utilize también codigo ruby dentro del html -->
+<%= turbo_frame_tag 'categories' do %>
 <h1><%= t('.title') %></h1>
 
-<%= render partial: 'product', collection: @products %>
+<%= link_to t('.all'), products_path %>
+  <%= render partial: 'category', collection: @categories %>
+  <%= render partial: 'product', collection: @products %>
+<% end %>

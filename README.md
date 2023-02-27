@@ -630,6 +630,105 @@ luego hacer la migración
 rails db:migrate
 ```
 
+# relacionando products con category 
+
+```bash
+rails generate migration AddCategoryToProducts category:references
+```
+aplicamos los cambios 
+```bash
+rails db:migrate
+```
+como he creado anteriormente datos nullos y ahora en la relacion le estoy diciendo que no tiene que estar null, entonces tengo que resetear los datos anteriores
+```bash
+rails db:reset
+```
+y nuevamente ahora si migramos
+```bash
+rails db:migrate
+```
+# relacionando desde le modelo de products y catergory
+en product.rb
+```ruby
+# en apps/models/product.rb
+  belongs_to :category
+```
+y en category.rb
+```ruby
+# en apps/models/category.rb
+  has_many :products
+```
+
+# rellenando datos desde la fixtures
+para categories
+```ruby 
+# test/fixtures/categories.rb
+
+videogames:
+  name: Videojuegos
+
+computers:
+  name: Informatica
+
+clothes:
+  name: Ropa
+
+```
+para product
+```ruby
+# test/fixtures/product.rb
+ps4:
+  title: ps4 Fast
+  description: Ps4 en buen estado
+  price: 150
+  category: videogames
+
+switch:
+  title: Nintendo Switch
+  description: le falta el lector de tarjeta sd
+  price: 195
+  category: videogames
+
+air:
+  title: Macbook Air
+  description: Le falla la batería
+  price: 250
+  category: computers
+```
+Ahora corremos desde la terminal
+```bash 
+rails db:fixtures:load
+```
+
+# para agregar un select desde html para seleccionar una categoria 
+```ruby
+# apps/views/products/_form.html.erb
+<div>
+    <%= form.label :category_id %>
+    <%= form.collection_select :category_id, Category.all.order(name: :asc), :id, :name %>
+  </div>
+
+```
+
+# si quieres que las consultas se cargen en paralelo
+agregar .load_async
+```ruby
+@categories = Category.all.order(name: :asc).load_async
+@products = Product.all.with_attached_photo.order(created_at: :desc).load_async
+```
+y desde application.rb agregar 
+```ruby 
+# config/application.rb
+ # allow multiquery - ejecutar query al mismo tiempo
+    config.active_record.async_query_executor = :global_thread_pool
+```
+
+
+
+
+
+
+
 
 
 

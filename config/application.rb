@@ -20,5 +20,7 @@ module Vende
     # config.eager_load_paths << Rails.root.join("extras")
     config.i18n.available_locales = [:en, :es]
     config.i18n.default_locale = :es
+    # allow multiquery - ejecutar query al mismo tiempo
+    config.active_record.async_query_executor = :global_thread_pool
   end
 end
