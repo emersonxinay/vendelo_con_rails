@@ -1,8 +1,14 @@
 <!-- la extención .erb se usa para que se utilize también codigo ruby dentro del html -->
 <%= turbo_frame_tag 'categories' do %>
 <h1><%= t('.title') %></h1>
+  <%# formulario para filtrar %>
+  <%= form_with url: products_path, method: :get do |form| %>
+    <%= form.number_field :min_price, placeholder: t('.min_price'), onChange: 'this.form.requestSubmit()', value: params[:min_price] %>
+    <%= form.number_field :max_price, placeholder: t('.max_price'),onChange: 'this.form.requestSubmit()', value: params[:max_price] %>
+  <% end %>
 
 <%= link_to t('.all'), products_path %>
   <%= render partial: 'category', collection: @categories %>
   <%= render partial: 'product', collection: @products %>
 <% end %>
+<br>

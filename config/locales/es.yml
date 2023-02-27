@@ -32,6 +32,8 @@ es:
     index:
       title: 'Productos:'
       all: 'Todos'
+      min_price: 'Precio mínimo'
+      max_price: 'Precio máximo'
     update:
       updated: 'Tu producto se ha actualizado correctamente'
     destroy:
