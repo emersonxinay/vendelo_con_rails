@@ -4,6 +4,12 @@ class Product < ApplicationRecord
     title: 'A',
     description: 'B'
   }
+  ORDER_BY = {
+    newest: "created_at DESC",
+    expensive: "price DESC",
+    cheaper: "price ASC"
+      # para filtrar todo el diccionario 
+  }
   has_one_attached :photo
   validates :title, presence: true
   validates :description, presence: true

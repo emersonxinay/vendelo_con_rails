@@ -6,9 +6,17 @@
     <%= form.text_field :query_text, placeholder: t('.query_text'), onChange: 'this.form.requestSubmit()', value: params[:query_text] %>
     <%= form.number_field :min_price, placeholder: t('.min_price'), onChange: 'this.form.requestSubmit()', value: params[:min_price] %>
     <%= form.number_field :max_price, placeholder: t('.max_price'),onChange: 'this.form.requestSubmit()', value: params[:max_price] %>
+    <%# formulario para hacer select  %>
+    <%# ---- de esto %>
+    <%# <%= form.select :order_by, options_for_select([["recientes", "newest"], ["Más Caros", "expensive"], ["Más baratos", "cheaper"]], params[:order_by]), {}, {onChange: 'this.form.requestSubmit()' }  %> %>
+    <%# ---- a esto traendo desde el modelo y haciendo el select mas dinamico  %>
+    <%= form.select :order_by, options_for_select(Product::ORDER_BY.keys.map {|order| [t(".#{order}"), order]}, params[:order_by]), {}, {onChange: 'this.form.requestSubmit()' }  %>
+
   <% end %>
 
 <%= link_to t('.all'), products_path %>
   <%= render partial: 'category', collection: @categories %>
-  <%= render partial: 'product', collection: @products %>
+  <div class= "products">
+    <%= render partial: 'product', collection: @products %>
+  </div>
 <% end %>
