@@ -124,6 +124,7 @@ GEM
     nokogiri (1.14.2)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
+    pagy (6.0.2)
     pg (1.4.5)
     pg_search (2.3.6)
       activerecord (>= 5.2)
@@ -213,6 +214,7 @@ DEPENDENCIES
   debug
   importmap-rails
   jbuilder
+  pagy (~> 6.0)
   pg (~> 1.1)
   pg_search (~> 2.3)
   puma (~> 5.0)

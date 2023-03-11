@@ -42,8 +42,11 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
-# postgresql fulltextsearch
+# postgresql fulltextsearch - para filtrar
 gem "pg_search", "~> 2.3"
+
+# pagination
+gem "pagy", "~> 6.0"
 
 # Use Sass to process CSS
 # gem "sassc-rails"
@@ -73,4 +76,5 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
 

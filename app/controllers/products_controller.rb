@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   def index
     @categories = Category.order(name: :asc).load_async
-    @products = Product.with_attached_photo.load_async
+    @products = Product.with_attached_photo
     if params[:category_id]
       @products = @products.where(category_id: params[:category_id])
     end
@@ -27,7 +27,9 @@ class ProductsController < ApplicationController
     # ---- a esto que heredamos del model
     order_by = Product::ORDER_BY.fetch(params[:order_by]&.to_sym, Product::ORDER_BY[:newest] )
 
-    @products = @products.order(order_by)
+    @products = @products.order(order_by).load_async
+    # usando pagy para la paginación y la cantidad de cuanto en cuanto se vera
+    @pagy, @products = pagy_countless(@products, items: 6)
     
     
   end

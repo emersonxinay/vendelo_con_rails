@@ -723,7 +723,7 @@ y desde application.rb agregar
     config.active_record.async_query_executor = :global_thread_pool
 ```
 
-# agregando gema para hacer consulta de producto
+# 28. agregando gema para hacer consulta de producto
 link de documentación: https://github.com/Casecommons/pg_search
 
 ```bash 
@@ -759,6 +759,46 @@ https://apidock.com/rails/v5.2.3/ActionView/Helpers/FormOptionsHelper/options_fo
 para reemplazar html con rails
 
 https://apidock.com/rails/ActionView/Helpers/FormOptionsHelper/select
+
+
+# 29. pagina infinita con hotwire
+
+cargar datos desde la fixtures en categories y products, recuerda agregar primero lo datos para correrlo desde la terminal
+```bash
+rails db:fixtures:load
+```
+agregar gema para la paginaación 
+```bash
+bundle add pagy
+```
+desde application_controller.rb agregamos al inicio
+
+```rb
+  include Pagy::Backend
+```
+y para iniciar con las vistas tambien agregamos en applicationo_helper.rb
+```rb
+  include Pagy::Frontend
+```
+ahora creamos un nuevo archivo en config/initializers/pagy.rb
+```rb
+require 'pagy/extras/countless'
+```
+y en products_controller dentro del index pero al final
+```rb
+@pagy, @products = pagy_countless(products, items: 12)
+```
+
+y desde views/products/index.html modificar la paginación
+```rb
+<%= link_to t('.all'), products_path %>
+  <%= render partial: 'category', collection: @categories %>
+  <%= turbo_frame_tag "products-#{@pagy.page}", class: 'products' do %>
+    <%= render partial: 'product', collection: @products %>
+    <%= turbo_frame_tag "products-#{@pagy.next}", class: 'products', src: pagy_url_for(@pagy, @pagy.next), loading: :lazy if @pagy.next %>
+  <% end %>
+<% end %>
+```
 
 
 

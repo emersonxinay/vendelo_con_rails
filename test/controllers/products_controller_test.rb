@@ -5,15 +5,15 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     get products_path
 
     assert_response :success
-    assert_select '.product', 3
-    assert_select '.category', 3
+    assert_select '.product', 6
+    assert_select '.category', 9
   end
 
   test 'render a list of products filtered by category' do
     get products_path(category_id: categories(:computers).id)
 
     assert_response :success
-    assert_select '.product', 1
+    assert_select '.product', 5
   end
 
   test 'render a detailed product page' do
@@ -28,7 +28,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     get products_path(min_price: 160, max_price: 200)
 
     assert_response :success
-    assert_select '.product', 1
+    assert_select '.product', 3
     assert_select 'h2', 'Nintendo Switch'
   end
 
@@ -113,15 +113,15 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     get products_path(order_by: 'expensive')
 
     assert_response :success
-    assert_select '.product', 3
-    assert_select '.products .product:first-child h2', 'Macbook Air'
+    assert_select '.product', 6
+    assert_select '.products .product:first-child h2', 'Seat Panda clásico'
   end
   # para productos mas baratos 
   test 'sort products by cheaper prices first' do
     get products_path(order_by: 'cheaper')
 
     assert_response :success
-    assert_select '.product', 3
-    assert_select '.products .product:first-child h2', 'ps4 Fast'
+    assert_select '.product', 6
+    assert_select '.products .product:first-child h2', 'El hobbit'
   end
 end

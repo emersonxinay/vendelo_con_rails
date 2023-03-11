@@ -1,5 +1,5 @@
 <!-- la extención .erb se usa para que se utilize también codigo ruby dentro del html -->
-<%= turbo_frame_tag 'categories' do %>
+<%= turbo_frame_tag 'home' do %>
 <h1><%= t('.title') %></h1>
   <%# formulario para filtrar %>
   <%= form_with url: products_path, method: :get do |form| %>
@@ -8,7 +8,7 @@
     <%= form.number_field :max_price, placeholder: t('.max_price'),onChange: 'this.form.requestSubmit()', value: params[:max_price] %>
     <%# formulario para hacer select  %>
     <%# ---- de esto %>
-    <%# <%= form.select :order_by, options_for_select([["recientes", "newest"], ["Más Caros", "expensive"], ["Más baratos", "cheaper"]], params[:order_by]), {}, {onChange: 'this.form.requestSubmit()' }  %> %>
+    <%# <%= form.select :order_by, options_for_select([["recientes", "newest"], ["Más Caros", "expensive"], ["Más baratos", "cheaper"]], params[:order_by]), {}, {onChange: 'this.form.requestSubmit()' }  %> 
     <%# ---- a esto traendo desde el modelo y haciendo el select mas dinamico  %>
     <%= form.select :order_by, options_for_select(Product::ORDER_BY.keys.map {|order| [t(".#{order}"), order]}, params[:order_by]), {}, {onChange: 'this.form.requestSubmit()' }  %>
 
@@ -16,7 +16,8 @@
 
 <%= link_to t('.all'), products_path %>
   <%= render partial: 'category', collection: @categories %>
-  <div class= "products">
+  <%= turbo_frame_tag "products-#{@pagy.page}", class: 'products' do %>
     <%= render partial: 'product', collection: @products %>
-  </div>
+    <%= turbo_frame_tag "products-#{@pagy.next}", class: 'products', src: pagy_url_for(@pagy, @pagy.next), loading: :lazy if @pagy.next %>
+  <% end %>
 <% end %>
