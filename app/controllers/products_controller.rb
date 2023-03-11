@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   def index
     @categories = Category.order(name: :asc).load_async
-    @products = Product.with_attached_photo.order(created_at: :desc).load_async
+    @products = Product.with_attached_photo.load_async
     if params[:category_id]
       @products = @products.where(category_id: params[:category_id])
     end
@@ -16,6 +16,20 @@ class ProductsController < ApplicationController
     if params[:query_text].present?
       @products = @products.search_full_text(params[:query_text])
     end
+    # para filtar por el select 
+    # ---- de esto directamente desde aqui
+    # order_by = {
+    #   newest: "created_at DESC",
+    #   expensive: "price DESC",
+    #   cheaper: "price ASC"
+    #     # para filtrar todo el diccionario 
+    # }.fetch(params[:order_by]&.to_sym, "created_at DESC" )
+    # ---- a esto que heredamos del model
+    order_by = Product::ORDER_BY.fetch(params[:order_by]&.to_sym, Product::ORDER_BY[:newest] )
+
+    @products = @products.order(order_by)
+    
+    
   end
 
   def show

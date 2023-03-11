@@ -738,10 +738,28 @@ y agregamos lo siguiente al model
 # apps/model/product.rb
 include PgSearch::Model
   pg_search_scope :search_full_text, against: {
+    #para saber el orden de prioridad de arriba hacia abajo
     title: 'A',
     description: 'B'
   }
 ```
+Haciendo pruebas desde la consola de rails
+```bash
+rails c
+```
+```bash
+Product.search_full_text('texto a buscar')
+```
+
+# para hacer un select form son ruby on rails 
+## options_for_select 
+visitar la pagina de documentación
+https://apidock.com/rails/v5.2.3/ActionView/Helpers/FormOptionsHelper/options_for_select
+
+para reemplazar html con rails
+
+https://apidock.com/rails/ActionView/Helpers/FormOptionsHelper/select
+
 
 
 
