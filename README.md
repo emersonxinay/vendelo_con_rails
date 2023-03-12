@@ -907,6 +907,10 @@ y desde el archivo de migración que se genero tratar de comparar con este codig
 por convención se a utilizado password_digest por la documentación de rails 
 https://api.rubyonrails.org/v7.0.4/classes/ActiveModel/SecurePassword/ClassMethods.html 
 
+creamos la migración ahora 
+```bash
+rails db:migrate
+```
 
 
 
