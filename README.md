@@ -912,6 +912,9 @@ creamos la migración ahora
 rails db:migrate
 ```
 
+# Login de usuario 
+
+
 
 
 
