@@ -945,8 +945,7 @@ segunda forma desde el modelo product agregamos lo siguiente
 ```rb 
 belongs_to :user, default: -> {Current.user}
 ```
-
-
+# 36 mejorando nuestra app
 
 
 
