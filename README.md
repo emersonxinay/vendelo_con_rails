@@ -912,9 +912,39 @@ creamos la migración ahora
 rails db:migrate
 ```
 
-# Login de usuario 
+# 33 Login de usuario 
 
+# 34 Protegiendo nuestra pagina 
 
+# 35 asignando productos a usuarios
+vamos hacer migración 
+```bash 
+rails g migration addUserToProduct user:references
+```
+y ahora nos vamos a la migración que genero 
+```rb
+
+```
+y en caso salga error 
+
+```bash
+rail db:reset
+```
+y ahora arreglar el prellenado de datos
+y para volver a cargar las fixtures 
+```bash
+rails db:fixtures:load 
+```
+
+primera forma para crear productos asignado al usuario que lo crea, desde products_controller.rb y dentro del metodo create
+```rb
+  
+    @product = Current.user.products.new(product_params)
+```
+segunda forma desde el modelo product agregamos lo siguiente
+```rb 
+belongs_to :user, default: -> {Current.user}
+```
 
 
 
