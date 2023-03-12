@@ -867,12 +867,13 @@ def index
     
   end 
 ```
-# 31 mejorando el codigo 
+# 31 actualizando y mejorando el codigo 
 vamos actualizar nuestro modelo de category
 ```rb
 #agregar en app/model/category
 validates :name, presence: true
 ```
+hacer una actualización de la base de datos
 ```bash
 rails g migration AddNotNullToCategoryName
 ```
@@ -882,6 +883,29 @@ y en el nuevo archivo que se crea agregar lo sigueinte
 change_column_null :categories, :name, false
 ```
 
+
+# 32 registro de usuarios 
+no se va usar devise, por tanto vamos a crear un modelo
+recuerda que el email y username deben ser unicos 
+```bash
+rails g model User email:string:uniq username:string:uniq password_digest:string 
+```
+y desde el archivo de migración que se genero tratar de comparar con este codigo
+```rb
+ def change
+    create_table :users do |t|
+      t.string :email, null: false
+      t.string :username, null: false
+      t.string :password_digest, null: false
+
+      t.timestamps
+    end
+    add_index :users, :email, unique: true
+    add_index :users, :username, unique: true
+  end
+```
+por convención se a utilizado password_digest por la documentación de rails 
+https://api.rubyonrails.org/v7.0.4/classes/ActiveModel/SecurePassword/ClassMethods.html 
 
 
 

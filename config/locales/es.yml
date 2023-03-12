@@ -24,6 +24,10 @@ es:
   common:
     confirm: '¿Esta seguro de eliminar?'
     back: 'atras'
+  authentication:
+    users:
+      create:
+        created: 'Tu cuenta se ha creado!'
   products:
     new:
       title: 'Agregar Nuevo Producto'
