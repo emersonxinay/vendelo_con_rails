@@ -1,5 +1,7 @@
 # idioma ingles
 en:
+  app_name: 'SellIT'
+  meta_title: 'Buy and sell second hand products!'
   activerecord:
     models:
       product: Product

@@ -867,7 +867,20 @@ def index
     
   end 
 ```
-
+# 31 mejorando el codigo 
+vamos actualizar nuestro modelo de category
+```rb
+#agregar en app/model/category
+validates :name, presence: true
+```
+```bash
+rails g migration AddNotNullToCategoryName
+```
+y en el nuevo archivo que se crea agregar lo sigueinte
+```rb
+#migrations/
+change_column_null :categories, :name, false
+```
 
 
 

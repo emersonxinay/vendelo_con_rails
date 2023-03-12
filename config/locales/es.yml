@@ -1,4 +1,6 @@
 es:
+  app_name: 'Vendelo a buen precio'
+  meta_title: 'Compra y vende productos de segunda mano'
   activerecord:
     models:
       product: Producto
