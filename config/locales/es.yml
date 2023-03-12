@@ -24,6 +24,7 @@ es:
   common:
     confirm: '¿Esta seguro de eliminar?'
     back: 'atras'
+    not_logged_in: 'Tienes que hacer login o crearte una cuenta'
   authentication:
     users:
       create:
