@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   include Authorization
   include Language
   include Pagy::Backend
+  include Error
   # class NotAuthorizedError < StandardError; end
 
   # rescue_from NotAuthorizedError do

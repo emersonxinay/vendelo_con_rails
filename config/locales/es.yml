@@ -1,5 +1,5 @@
 es:
-  app_name: 'Vendelo a buen precio'
+  app_name: 'Vendelo'
   meta_title: 'Compra y vende productos de segunda mano'
   activerecord:
     models:
@@ -8,26 +8,32 @@ es:
       category: Categoría
     attributes:
       product:
-        title: 'Titulo'
+        title: 'Título'
         description: 'Descripción'
         price: 'Precio'
         photo: 'Foto'
-    user:
-      email: 'Correo electrónico'
-      username: 'Usuario'
-      password: 'Contraseña'
-    category:
-      name: 'Nombre'
+      user:
+        email: 'Correo electrónico'
+        username: 'Usuario'
+        password: 'Contraseña'
+      category:
+        name: 'Nombre'
   common:
-    confirm: '¿Esta seguro de eliminar?'
-    back: 'atras'
+    confirm: '¿Estás seguro?'
+    back: 'Volver'
     not_logged_in: 'Tienes que hacer login o crearte una cuenta'
     not_authorized: 'No tienes permisos para esta acción'
-
+    not_found: 'No se ha encontrado'
+  partials:
+    navbar:
+      add: 'Añadir producto'
+      login: 'Acceso'
+      register: 'Registro'
+      logout: 'Salir'
   authentication:
     users:
       create:
-        created: 'Tu cuenta se a creado!'
+        created: 'Tu cuenta se ha creado!'
     sessions:
       create:
         created: 'Bienvenido!'
@@ -35,33 +41,29 @@ es:
       destroy:
         destroyed: 'Tu sesión ha terminado! Hasta la próxima'
   products:
-    new:
-      title: 'Agregar Nuevo Producto'
     edit:
-      title: 'Editar Producto'
-    create:
-      created: 'Tu producto se ha creado correctamente'
-
+      title: 'Editar producto'
+    new:
+      title: 'Añadir producto'
     index:
       title: 'Productos:'
       all: 'Todos'
       min_price: 'Precio mínimo'
       max_price: 'Precio máximo'
       query_text: '¿Qué quieres buscar?'
-      expensive: 'Más Caros'
-      cheaper: 'Más Baratos'
+      expensive: 'Más caros'
+      cheapest: 'Más barato'
       newest: 'Añadidos recientemente'
+    show:
+      edit: 'Editar producto'
+      delete: 'Borrar producto'
+      view_more_products: 'Ver más productos de %{username}'
+    create:
+      created: 'Tu producto se ha creado correctamente'
     update:
       updated: 'Tu producto se ha actualizado correctamente'
     destroy:
       destroyed: 'Tu producto se ha eliminado correctamente'
-
-  partials:
-    navbar:
-      add: 'Agregar Nuevo Producto'
-      login: 'Acceso'
-      register: 'Registro'
-      logout: 'Salir'
   categories:
     category:
       edit: 'Editar'
