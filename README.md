@@ -967,6 +967,21 @@ y luego volvemos a cargar los fixtures
 rails db:fixtures:load
 ```
 
+# 40 añadiendo favoritos 
+creamos un nuevo modelo 
+```bash
+rails g model Favorite user:references product:references
+```
+agregar en la migracion generada 
+```rb
+add_index :favorites, [:user_id, :product_id], unique: true
+```
+y ahora si hacemos la migracion 
+```bash
+rails db:migrate
+```
+
+
 
 
 
