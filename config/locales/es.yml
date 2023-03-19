@@ -22,6 +22,8 @@ es:
     confirm: '¿Esta seguro de eliminar?'
     back: 'atras'
     not_logged_in: 'Tienes que hacer login o crearte una cuenta'
+    not_authorized: 'No tienes permisos para esta acción'
+
   authentication:
     users:
       create:
@@ -53,6 +55,7 @@ es:
       updated: 'Tu producto se ha actualizado correctamente'
     destroy:
       destroyed: 'Tu producto se ha eliminado correctamente'
+
   partials:
     navbar:
       add: 'Agregar Nuevo Producto'

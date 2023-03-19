@@ -946,6 +946,27 @@ segunda forma desde el modelo product agregamos lo siguiente
 belongs_to :user, default: -> {Current.user}
 ```
 # 36 mejorando nuestra app
+# 37 implementando polices
+hacer una migración para crear usuario admin 
+```bash
+rails g migration AddAdminToUser admin:boolean 
+```
+y luego modificamos la migracion para hacer que no todos los usuarios se creen como admin
+```rb
+ def change
+    add_column :users, :admin, :boolean, default: false
+  end
+```
+
+y luego creamos la migracion  
+```bash
+rails db:migrate
+```
+y luego volvemos a cargar los fixtures 
+```bash
+rails db:fixtures:load
+```
+
 
 
 
