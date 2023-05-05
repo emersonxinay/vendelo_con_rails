@@ -2,6 +2,7 @@
 <h1><%= t('app_name') %></h1>
 
 <%= link_to t('.add'), new_product_path if Current.user %>
+<%= link_to t('.favorites'), favorites_path if Current.user %>
 <%= link_to t('.categories'), categories_path if Current.user&.admin? %>
 <%= link_to t('.login'), new_session_path unless Current.user %>
 

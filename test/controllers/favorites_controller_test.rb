@@ -22,4 +22,9 @@ class FavoritesControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to product_path(@switch)
   end
+  test "should return my favorites" do
+    get favorites_url
+
+    assert_response :success
+  end
 end
