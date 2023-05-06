@@ -22,5 +22,8 @@ module Vende
     config.i18n.default_locale = :es
     # allow multiquery - ejecutar query al mismo tiempo
     config.active_record.async_query_executor = :global_thread_pool
+
+    # Background job
+    config.active_job.queue_adapter = :sidekiq
   end
 end

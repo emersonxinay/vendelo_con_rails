@@ -1061,6 +1061,53 @@ usarlo en grupo test
 gem "webmock"
 ```
 
+# 53 para tareas pesadas en peticiones 
+usaremos job fetch_country
+```bash 
+rails g job fetch_country
+```
+
+## instalar gema Sidekiq  guarda los jobs en una base de datos redis 
+redis almacena con clave y valor
+https://github.com/sidekiq/sidekiq
+
+primero instalamos redis 
+en mac
+```bash
+brew install redis
+```
+en ubunto
+```bash
+sudo apt install redis
+```
+para saber si redis esta activo: 
+```bash
+redis-cli ping
+```
+si en caso no se activa, hay que activarlo:
+```bash
+brew services start redis
+```
+
+y hora agregamos la gema sidekiq 
+```bash 
+bundle add sidekiq
+``` 
+y agregamos en config/application.rb 
+```rb
+    # Background job
+    config.active_job.queue_adapter = :sidekiq
+```
+
+## para ejecutar SIDEKIQ
+corremos nuestra aplicación
+```bash
+bin/dev
+```
+y en otra terminal 
+```bash 
+bundle exec sidekiq
+```
 
 
 

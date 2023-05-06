@@ -13,11 +13,11 @@ class FetchCountryService
     if status == "success"
       parsed_response.dig("countryCode").downcase 
     else 
-      nil 
+      nil
     end
     
   rescue
-    pp 'hubo una excepción'
+    nil
   end
 
 end
