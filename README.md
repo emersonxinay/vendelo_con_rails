@@ -980,7 +980,23 @@ y ahora si hacemos la migracion
 ```bash
 rails db:migrate
 ```
+# 44 instalando tailwind 
 
+```bash
+bundle add tailwindcss-rails 
+```
+```bash
+rails tailwindcss:install
+```
+y por si no ejecuta correctamente, hacer lo siguiente: 
+```bash 
+bundle lock --add-platform x86_64-darwin 
+```
+y también desactivar el bloqueo de css 
+```bash 
+bundle config --delete force_ruby_platform
+```
+y vuelves a repetir a instalar 
 
 
 
