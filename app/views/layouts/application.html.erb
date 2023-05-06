@@ -11,12 +11,9 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="bg-gray-700 p-4">
     <%= render  'partials/flash' %>
     <%= render  'partials/navbar' %>
-    <h1 class="text-3xl font-bold underline">
-        Hello world!
-    </h1>
     <%= yield %>
   </body>
 </html>
