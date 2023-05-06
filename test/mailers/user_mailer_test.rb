@@ -9,8 +9,8 @@ class UserMailerTest < ActionMailer::TestCase
     mail = UserMailer.with(user: @user).welcome
     assert_equal "Bienvenido a vendelo", mail.subject
     assert_equal [@user.email], mail.to
-    assert_equal ["no-reply@vendelo.com"], mail.from
-    assert_match "Hey #{@user.username}, bienvenido a Vendelo ", mail.body.encoded
+    assert_equal ["no-replay@vendelo.com"], mail.from
+    assert_match "Hey #{@user.username}, bienvenido a vendelo ", mail.body.encoded
   end
 
 end

@@ -1044,6 +1044,22 @@ config.action_mailer.delivery_method = :letter_opener
 config.action_mailer.perform_deliveries = true
 ```
 
+# 52 service object -  guardar de que pais se conecta
+https://ip-api.com/ 
+ahora haremos una migración 
+```bash 
+rails g migration addCountryToUsers country:string
+```
+```bash 
+rails db:migrate
+```
+
+## para bloquear una peticion api usaremos webmock 
+https://github.com/bblimke/webmock
+usarlo en grupo test 
+```Gemfile
+gem "webmock"
+```
 
 
 
