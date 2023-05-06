@@ -1016,9 +1016,32 @@ bin/importmap pin tailwindcss-stimulus-components
  bin/importmap pin tailwindcss-stimulus-components --download
  ```
 
-# 50 view components - para agregar estilos
+# 50 instalar view components - para agregar estilos
 ```bash 
-bundle add view_components
+bundle add view_component
+```
+y luego agregamos en rails el componente 
+```bash
+rails g component Category category
+```
+
+# 51 instalar mailer - para enviar correos automaticos 
+
+```bash 
+rails g mailer User Welcome
+```
+
+##  para ver los mensajes de mailer 
+instalar una gema llamada letter opener en el archivo Gemfile 
+https://github.com/ryanb/letter_opener 
+```gemfile
+gem "letter_opener"
+```
+
+luego en config/enviroments/development.rb 
+```rb
+config.action_mailer.delivery_method = :letter_opener
+config.action_mailer.perform_deliveries = true
 ```
 
 
