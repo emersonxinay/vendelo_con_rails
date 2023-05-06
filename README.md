@@ -1013,7 +1013,7 @@ bin/importmap pin tailwindcss-stimulus-components
  ```
  para descargar y tenerlo localmente 
  ```bash 
- bin/importmap pin tailwindcss-stimulus-components --dowload
+ bin/importmap pin tailwindcss-stimulus-components --download
  ```
 
 
