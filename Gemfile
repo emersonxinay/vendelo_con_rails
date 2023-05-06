@@ -80,3 +80,6 @@ end
 
 
 gem "tailwindcss-rails", "~> 2.0"
+
+
+gem "view_component", "~> 3.0"

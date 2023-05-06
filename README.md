@@ -1016,6 +1016,10 @@ bin/importmap pin tailwindcss-stimulus-components
  bin/importmap pin tailwindcss-stimulus-components --download
  ```
 
+# 50 view components - para agregar estilos
+```bash 
+bundle add view_components
+```
 
 
 
