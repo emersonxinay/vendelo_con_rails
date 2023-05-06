@@ -998,6 +998,23 @@ bundle config --delete force_ruby_platform
 ```
 y vuelves a repetir a instalar 
 
+# 48 importmaps - reemplazando a webpack 
+
+```bash
+bin/importmap
+```
+instalando cdn
+```bash
+bin/importmap pin tailwindcss-stimulus-components
+```
+ para quitar el cdn 
+ ```bash
+ bin/importmap unpin tailwindcss-stimulus-components
+ ```
+ para descargar y tenerlo localmente 
+ ```bash 
+ bin/importmap pin tailwindcss-stimulus-components --dowload
+ ```
 
 
 
