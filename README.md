@@ -1117,6 +1117,8 @@ instalamos action cable
 bin/importmap pin @rails/actioncable --download
 ```
 
+# 55 Refacto con Turbo Stream,
+ es decir eliminamos algunos archivos que se trabajo para websockets 
 
 
 
