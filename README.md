@@ -1109,6 +1109,14 @@ y en otra terminal
 bundle exec sidekiq
 ```
 
+# 54 Websockets con Action Cable
+Action Cable es para comunicarse muy rapido en tiempo real ,abre coneccion entre cliente y servidor. 
+
+instalamos action cable
+```bash
+bin/importmap pin @rails/actioncable --download
+```
+
 
 
 
